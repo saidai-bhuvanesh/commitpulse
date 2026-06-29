@@ -790,8 +790,11 @@ export default function LandingPageClient() {
                           className="w-6 h-6 rounded-full border border-emerald-500/20 object-cover"
                           onError={(e) => {
                             const img = e.currentTarget as HTMLImageElement;
-                            img.onerror = null;
-                            img.src = `https://github.com/${userDetails.login}.png`;
+                            const fallback = `https://github.com/${userDetails.login}.png`;
+                            if (img.src !== fallback) {
+                              img.onerror = null;
+                              img.src = fallback;
+                            }
                           }}
                         />
                         <div className="flex flex-col">

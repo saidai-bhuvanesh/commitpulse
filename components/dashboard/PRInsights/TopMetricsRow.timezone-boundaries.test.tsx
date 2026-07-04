@@ -120,8 +120,16 @@ describe('TopMetricsRow Timezone Normalization & Calendar Data Boundary Alignmen
     const pick = (parts: Intl.DateTimeFormatPart[], type: Intl.DateTimeFormatPartTypes) =>
       parts.find((p) => p.type === type)?.value;
 
-    expect([pick(usParts, 'month'), pick(usParts, 'day'), pick(usParts, 'year')]).toEqual(['7', '4', '2026']);
-    expect([pick(ukParts, 'day'), pick(ukParts, 'month'), pick(ukParts, 'year')]).toEqual(['04', '07', '2026']);
+    expect([pick(usParts, 'month'), pick(usParts, 'day'), pick(usParts, 'year')]).toEqual([
+      '7',
+      '4',
+      '2026',
+    ]);
+    expect([pick(ukParts, 'day'), pick(ukParts, 'month'), pick(ukParts, 'year')]).toEqual([
+      '04',
+      '07',
+      '2026',
+    ]);
 
     render(<TopMetricsRow data={mockData} />);
     expect(screen.getByText('Total PRs')).toBeInTheDocument();
